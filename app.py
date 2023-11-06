@@ -16,11 +16,35 @@ app.app_context().push()
 
 class Todo(db.Model):
     """
-    Classe Todo
+    Class for representing a to-do item.
     """
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     complete = db.Column(db.Boolean)
+
+    def __init__(self, title, complete=False):
+        """
+        Initialize a to-do item.
+
+        Args:
+            title (str): The title of the to-do item.
+            complete (bool, optional): Whether the to-do item is complete (default is False).
+        """
+        self.title = title
+        self.complete = complete
+
+    def mark_as_complete(self):
+        """
+        Mark this to-do item as complete.
+        """
+        self.complete = True
+
+    def mark_as_incomplete(self):
+        """
+        Mark this to-do item as incomplete.
+        """
+        self.complete = False
 
 @app.route("/edit")
 def home1():
